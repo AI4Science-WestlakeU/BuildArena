@@ -23,6 +23,14 @@
 
 ---
 
+## 🙏 Special Thanks
+
+We are grateful to [Spiderling Studios](https://store.steampowered.com/app/346010/) for creating **Besiege**, the inspiring physics sandbox that underpins our work. We also thank the developers of the open-source projects [Lua Scripting Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2383785201) and [Besiege Creation Import Addon for Blender](https://github.com/lelandjansen/besiege-creation-importer) for their valuable contributions to the community.
+
+We also gratefully acknowledge the support of **Westlake University Research Center for Industries of the Future**.
+
+---
+
 ## 📅 Timeline
 
 - **2025-10-17** 🚀 Repository launched with baseline implementation

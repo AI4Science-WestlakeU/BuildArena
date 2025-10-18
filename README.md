@@ -41,6 +41,33 @@ We also gratefully acknowledge the support of **Westlake University Research Cen
 
 ---
 
+## 🏆 Performance Leaderboard
+
+We evaluate eight frontier large language models on Build Arena across three task categories (**Transport**, **Support**, **Lift**) and three difficulty levels (Lv.1 Easy, Lv.2 Medium, Lv.3 Hard) under our baseline agentic workflow. Performance is measured by success rate, with **64 samples per task-model pair** to ensure statistical reliability.
+
+| Rank | Model | Full Model Name | Transport<br>Avg Success Rate | Support<br>Avg Success Rate | Lift<br>Avg Success Rate | Overall Performance |
+|:----:|-------|----------------|:-----------------------------:|:---------------------------:|:------------------------:|:-------------------:|
+| 🥇 | **Grok-4** | grok4-0709 | **11.5%** | **20.8%** | **21.9%** | **Excellent** |
+| 🥈 | **Claude-4** | claude-sonnet-4-20250514 | 12.5% | 3.1% | 4.2% | Good |
+| 🥉 | **Seed-1.6** | doubao-seed-1-6-250615 | 6.2% | 19.3% | 2.1% | Good |
+| 4 | **GPT-4o** | gpt-4o | 6.2% | 13.5% | 3.6% | Moderate |
+| 5 | **Kimi-K2** | kimi-k2-turbo-preview | 4.7% | 11.5% | 5.2% | Moderate |
+| 6 | **Qwen-3** | qwen-plus (Qwen3 series) | 5.7% | 5.7% | 1.0% | Moderate |
+| 7 | **DeepSeek-3.1** | deepseek-chat (DeepSeek-V3.1) | 2.6% | 8.3% | 3.6% | Moderate |
+| 8 | **Gemini-2.0** | gemini-2.0-flash | 1.6% | 7.8% | 0.0% | Moderate |
+
+> *Success rates are averaged across all three difficulty levels (Lv.1, Lv.2, Lv.3) for each task category under our baseline agentic workflow. Full model snapshots and detailed experimental setup are available in the paper appendix.*
+
+### Key Findings
+
+- **Grok-4** shows the strongest overall performance, particularly excelling in **Precision** and **Robustness** across all task categories
+- Most models handle **Magnitude** and **Ambiguity** well but struggle with **Compositionality** and **Precision**
+- LLMs exhibit creative problem-solving by proposing unconventional solutions when constraints are relaxed
+- Success rates drop sharply in hierarchical assembly tasks (Support Lv.3) and high-precision tasks (Lift)
+- Cost analysis reveals that more tokens ≠ better performance — best results often consume only moderate numbers of tokens
+
+---
+
 ## Installation
 
 Install [uv](https://github.com/astral-sh/uv) following the official guidance. 

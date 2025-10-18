@@ -1,0 +1,50 @@
+name: Ballast
+id: 35
+shape: [1, 1, 1]
+root: [0, 0, 0.5]
+scale: [2.5, 2.5, 1.5]
+
+collider:
+  type: box
+  extents:
+    - [0.2, 0.2, 0.2]
+
+outline:
+  type: box
+  extents:
+    - [1, 1, 1]
+
+vec_base: [0, 0, 1]
+center_offset: 0.5
+
+faces:
+  A:
+    - [0.5, 0, 0.5]
+    - [1, 0, 0]
+  B:
+    - [-0.5, 0, 0.5]
+    - [-1, 0, 0]
+  C:
+    - [0, 0.5, 0.5]
+    - [0, 1, 0]
+  D:
+    - [0, -0.5, 0.5]
+    - [0, -1, 0]
+  E:
+    - [0, 0, 1]
+    - [0, 0, 1]
+  F:
+    - [0, 0, 0]
+    - [0, 0, -1]
+
+data: |
+                <Single key="bmt-mass">5.0</Single>
+
+locomotion: false
+spin: false
+type: basic
+weight: 1
+wiki: https://besiege.fandom.com/wiki/Ballast
+description: Solid stone block with shape of 1x1x1 and weight of 1 unit mass
+disable: True
+cost: 4

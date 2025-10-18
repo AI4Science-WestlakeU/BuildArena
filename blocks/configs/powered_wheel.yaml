@@ -1,0 +1,55 @@
+name: Powered Wheel
+id: 2
+shape: [2, 2, 0.5]
+root: [0, 0, 0.25]
+
+collider:
+  type: cylinder
+  radius: 1
+  height: 0.5
+
+outline:
+  type: cylinder
+  radius: 1
+  height: 0.5
+
+vec_base: [0, 0, 1]
+center_offset: 0
+
+faces:
+  E:
+    - [0, 0, 1]
+    - [0, 0, 1]
+
+data: |
+                <Integer key="bmt-version">1</Integer>
+                <Single key="bmt-speed">1</Single>
+                <Single key="bmt-acceleration">60</Single>
+                <Boolean key="bmt-automatic">False</Boolean>
+                <Boolean key="bmt-toggle-mode">False</Boolean>
+                <Boolean key="bmt-auto-brake">True</Boolean>
+                <StringArray key="bmt-forward">{spinning_forward}</StringArray>
+                <StringArray key="bmt-backward">{spinning_backward}</StringArray>
+                <Boolean key="bmt-opt-collider">True</Boolean>
+                <Single key="bmt-contact">0.1</Single>
+                <Boolean key="flipped">{flipped}</Boolean>
+locomotion: 
+  spinning_forward: []
+  spinning_backward: []
+spin: 
+  parallel_to: E
+  rel: 1
+type: basic
+weight: 1.0
+wiki: https://besiege.fandom.com/wiki/Powered_Wheel
+description: >
+  A powered wooden wheel (diameter = 2, thickness = 0.5) rotates at a constant speed of 100 rpm, and automatically brakes when the wheel stops. 
+  Each powered wheel can be individually controlled to rotate forward or backward by pressing and holding configurable control keys.
+  The wheel's motion is governed by the following constraints:
+  - The wheel's rotation axis is perpendicular to the attached face.
+  - The rolling direction is always parallel to the attached face.
+  - For example, if the attached face is a horizontal face, the wheel will also be horizontal; if the attached face is a vertical face, the wheel will also be vertical.
+  - For example, if the wheel is attached to a side face, the wheel will be rotating parallel to the side face and the rolling direction is perpendicular to the side face.
+  - For example, if the wheel is attached to a bottom face, the wheel will be rotating parallel to the bottom face and unable to roll effectively.
+disable: false
+cost: 1

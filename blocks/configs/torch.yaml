@@ -1,0 +1,46 @@
+name: Torch
+id: 47
+shape: [1.5, 0.5, 0.5]
+root: [0, 0, 0.25]
+
+collider:
+  type: box
+  extents: 
+    - [0.5, 1.4, 0.5]
+  translation: 
+    - [0, 0.25, 0]
+
+outline:
+  type: box
+  extents: 
+    - [0.5, 1.5, 0.5]
+  translation: 
+    - [0, 0.25, 0]
+
+vec_base: [0, 1, 0]
+center_offset: 0.5
+
+faces: null
+
+data: null
+locomotion: false
+spin: false
+
+type: pointer
+weight: 1
+wiki: https://besiege.fandom.com/wiki/Torch
+description: >
+  The torch flame sets flammable blocks, structures, and entities on fire. 
+  It can be extinguished by Water Cannons (and Steam Cannons!), and reignited by other burning blocks.
+  Their most common use is in heating water cannons so they produce steam, particularly in vanilla builds 
+  However, they can be extinguished by steam plumes, so care must be taken not to fly backwards. 
+  The torch will generate a spherical heating area with a radius of 0.3 unit in front of its flame nozzle direction (that is, the position of the torch body plus the orientation vector). 
+  All objects in this area will be heated or ignited by the flame.
+  They can also be used for setting fire to things for destructive purposes.
+  Torches have no attachable faces for further attachment or connection.
+  The Torch is shaped as a short horizontal support (length of 0.5), and a vertical shaft (length of 1), the flame is at the end of the vertical shaft.
+  For example, if the torch is attached to a vertical face (face center is [0.5, 0, 0]) and points upwards, the torch coordinates will be [1, 0, 0] since the horizontal support of the torch has a offset of 0.5 from the attached surface, and the heating area will be a sphere with radius 0.3 centered at [1, 0, 1] since the length of the vertical shaft is 1.
+  
+disable: false
+cost: 13
+descriptor: torch

@@ -1,0 +1,52 @@
+name: Winch
+id: 45
+shape: [0, 0, 0]
+root: [0, 0, 0]
+
+collider:
+  type: box
+  extents:
+    - [0, 0, 0]
+
+outline:
+  type: box
+  extents:
+    - [0.6, 0.6, 0.6]
+
+vec_base: [0, 0, 1]
+center_offset: 0
+
+faces: null
+
+data: |                
+                <Vector3 key="start-position">
+                    <X>0</X>
+                    <Y>0</Y>
+                    <Z>0</Z>
+                </Vector3>
+                <Vector3 key="end-position">
+                    <X>{end_x}</X>
+                    <Y>{end_y}</Y>
+                    <Z>{end_z}</Z>
+                </Vector3>
+                <Vector3 key="start-rotation">
+                    <X>{start_r_x}</X>
+                    <Y>{start_r_y}</Y>
+                    <Z>{start_r_z}</Z>
+                </Vector3>
+                <Vector3 key="end-rotation">
+                    <X>{end_r_x}</X>
+                    <Y>{end_r_y}</Y>
+                    <Z>{end_r_z}</Z>
+                </Vector3>
+locomotion: false
+spin: false
+type: connection
+weight: 0.4
+wiki: https://besiege.fandom.com/wiki/Winch
+description: >
+    The Simple Rope + Winch (simply as Winch or Rope) is a machine block composed of two winches at its end node which connects two blocks by a variable-length rope.
+    Winch must be connected between two attachable faces of existing blocks, it cannot be directly attached to a single block.
+
+disable: false
+cost: 1

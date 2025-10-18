@@ -1,0 +1,51 @@
+name: Water Cannon
+id: 56
+shape: [1, 1.75, 1]
+root: [0, 0, 0.5]
+
+collider:
+  type: box
+  extents: 
+    - [0.9, 1.75, 0.9]
+  translation: 
+    - [0, -0.3, 0]
+
+outline:
+  type: box
+  extents: 
+    - [1, 1.75, 1]
+  translation: 
+    - [0, -0.3, 0]
+
+vec_base: [0, -1, 0]
+center_offset: 0.5
+
+faces: null
+
+data: |
+                <StringArray key="bmt-shoot">{hold_to_fire}</StringArray>
+                <Boolean key="bmt-hold-to-fire">True</Boolean>
+                <Single key="bmt-strength">4</Single>
+locomotion: 
+  hold_to_fire: []
+
+spin: false
+shoot: true
+
+type: pointer
+weight: 1.5
+wiki: https://besiege.fandom.com/wiki/Water_Cannon
+description: >
+  The Water Cannon sprays water in a fixed direction, which is determined by the attachment and orientation of the water cannon.
+  Generates constant recoil force of 1.6 units of mass at normal gravity. The recoil force is not affected by speed or external conditions.
+  Each water cannon can be individually controlled to fire by pressing and holding a configurable control key.
+  Water Cannon has no attachable faces for further attachment or connection.
+  Steam Mode: If any part of the water cannon is heated, it will fire steam instead of water and deliver 8.6 times the regular recoil force.
+  Water Cannon has a peanut-shaped body (narrower in the middle than at the two ends, inlet and outlet are at the two ends) with length of 1.75, width of 1, and height of 1.
+  The middle part of the water cannon is narrower, making it hard to be directly heated if the heat source is small.
+  For example, if the water cannon is attached to a vertical face (face center is [0.5, 0, 0]) and points downwards, the water cannon center coordinates will be [1, 0, 0] since the connection part of the water cannon has a offset of 0.5 from the surface, and the water cannon inlet will be at [1, 0, 0.75] and the water cannon outlet will be at [1, 0, -1] with a shape of 1.75x1x1 cylinder (narrower in the middle than at the two ends).
+  
+disable: false
+cost: 1
+
+descriptor: water_cannon

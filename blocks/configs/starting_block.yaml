@@ -1,0 +1,47 @@
+name: Starting Block
+id: 0
+shape: [1, 1, 1]
+root: [0, 0, 0]
+
+collider:
+  type: box
+  extents:
+    - [1, 1, 1]
+
+outline:
+  type: box
+  extents:
+    - [1, 1, 1]
+
+vec_base: [0, 0, 1]
+center_offset: 0
+
+faces:
+  A:
+    - [0.5, 0, 0]
+    - [1, 0, 0]
+  B:
+    - [-0.5, 0, 0]
+    - [-1, 0, 0]
+  C:
+    - [0, 0.5, 0]
+    - [0, 1, 0]
+  D:
+    - [0, -0.5, 0]
+    - [0, -1, 0]
+  E:
+    - [0, 0, 0.5]
+    - [0, 0, 1]
+  F:
+    - [0, 0, -0.5]
+    - [0, 0, -1]
+
+data: <Integer key="bmt-version">1</Integer>
+locomotion: false
+spin: false
+type: basic
+weight: 0.25
+wiki: https://besiege.fandom.com/wiki/Starting_Block
+description: Starting cubic block with shape of 1x1x1 as the beginning of all building process.
+disable: false
+cost: 1

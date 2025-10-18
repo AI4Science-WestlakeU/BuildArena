@@ -1,0 +1,214 @@
+level: soft
+category: transport
+task: |
+  **Constraints:**
+  - Use only one sub-structure.
+  - The vehicle must have at least four wheels.
+  - The vehicle must be capable of forward driving and demonstrate a steering mechanism.
+  - Conventional steering mechanisms (e.g., rotating front wheels relative to the body) are not available with the provided blocks. Alternative steering strategies must be employed.
+
+  **Goal:**
+  - Drive the vehicle from the starting position (x=0, y=0) on the ground to the target position (x=10, y=10) on the ground (north-east direction) in the simulation environment.
+
+  **Evaluation Protocol:**
+  - The vehicle will be placed at (x=0, y=0) on the ground in the simulation environment.
+  - An open-loop control sequence will be programmed by a specialized AI agent following your plan, consisting of a list of commands with the format:
+    - [time: when to press the control key, command: the control key to press, duration: how long to hold the key]
+  - The trajectory of the vehicle will be recorded as feedback and optimized over three trials by adjusting the control sequence.
+  - The final score will be the best score across the three trials.
+
+  **Scoring Metrics:**
+  - *Trajectory Deviation:* Distance between the actual trajectory and the ideal straight-line path from start to target (smaller is better).
+  - *Structure Stability:* Whether the vehicle remains intact during driving (higher stability is better).
+  - *Time Efficiency:* Time taken to reach the target position (shorter is better).
+  - *Cost:* Number of blocks used to construct the vehicle (fewer is better).
+
+---
+level: medium
+category: transport
+task: |
+  **Constraints:**
+  - Use only one sub-structure.
+  - The cargo will not show in the building process, do not include it in the building plan.
+
+  **Goal:**
+  - Move a 2.5x2.5x1.5 cargo with 50 units mass from the starting position (x=0, y=0) on the ground to the target position (x=10, y=10) on the ground (north-east direction) in the simulation environment.
+
+  **Evaluation Protocol:**
+  - The machine will be placed at (x=0, y=0) on the ground in the simulation environment.
+  - The cargo will be loaded to the machine by freely dropping from above the starting position (x=0, y=0, z=3.5).
+  - The cargo will not have solid connection with the machine.
+  - An open-loop control sequence will be programmed by a specialized AI agent following your plan, consisting of a list of commands with the format:
+    - [time: when to press the control key, command: the control key to press, duration: how long to hold the key]
+  - The trajectory of both cargo and machine will be recorded as feedback and optimized over three trials by adjusting the control sequence.
+  - The final score will be the best score across the three trials.
+
+  **Scoring Metrics:**
+  - *Trajectory Deviation:* Distance between the actual trajectory of the cargo and the ideal straight-line path from start to target (smaller is better).
+  - *Structure Stability:* Whether the machine remains intact during driving (higher stability is better).
+  - *Time Efficiency:* Time taken to reach the target position (shorter is better).
+  - *Cost:* Number of blocks used to construct the machine (fewer is better).
+
+---
+level: hard
+category: transport
+task: |
+  **Constraints:**
+  - Use only one sub-structure.
+  - The cargo will not show in the building process, do not include it in the building plan.
+
+  **Goal:**
+  - Move a 4x8x1.5 cargo (long axis along the north-south direction) with 50 units mass from the starting position (x=0, y=0) on the ground to the target position (x=10, y=10) on the ground (north-east direction), and back to the starting position in the simulation environment.
+
+  **Evaluation Protocol:**
+  - The machine will be placed at (x=0, y=0) on the ground in the simulation environment.
+  - The cargo will be loaded to the machine by freely dropping from above the starting position (x=0, y=0, z=3.5).
+  - The cargo will not have solid connection with the machine.
+  - An open-loop control sequence will be programmed by a specialized AI agent following your plan, consisting of a list of commands with the format:
+    - [time: when to press the control key, command: the control key to press, duration: how long to hold the key]
+  - The trajectory of both cargo and machine will be recorded as feedback and optimized over three trials by adjusting the control sequence.
+  - The final score will be the best score across the three trials.
+
+  **Scoring Metrics:**
+  - *Trajectory Deviation:* Distance between the actual trajectory of the cargo and the ideal straight-line path from start to target (smaller is better).
+  - *Structure Stability:* Whether the machine remains intact during driving (higher stability is better).
+  - *Time Efficiency:* Time taken to reach the target position (shorter is better).
+  - *Cost:* Number of blocks used to construct the machine (fewer is better).
+
+---
+level: soft
+category: support
+task: |
+  **Constraints:**
+  - Use only one sub-structure.
+
+  **Goal:**
+  - Build a bridge capable of spanning a gap between two flat terrains (5 units wide, 5 units high).
+  - The bridge must be able to support a 2.5 × 2.5 × 1.5 cargo placed at its center.
+
+  **Evaluation Protocol:**
+  - The terrains are positioned with edges at (x=0, y=2.5, z=5) and (x=0, y=-2.5, z=5), forming a 5-unit-wide gap along the north–south axis with a vertical drop of 5 units.
+  - The bridge will be initially placed at (x=0, y=0, z=7), slightly above the terrain tops, so it can gently fall into position.
+  - There will be no fixed connection between the bridge and the terrain.
+  - A cargo of size 2.5 × 2.5 × 1.5 will be dropped at (x=0, y=0, z=7), directly above the center of the gap.
+  - The cargo will rest on the bridge without any fixed connection.
+  - The cargo’s weight will gradually and linearly increase from zero (no initial impact).
+  - The trajectory of the cargo will be tracked; the load at which the cargo sinks below the gap will be recorded as the bridge’s maximum supported load.
+  - If the bridge fails to span the gap or misses the cargo at the start, the score is 0.
+
+  **Scoring Metrics:**
+  - *Maximum Load:* Maximum load supported before the cargo falls below the gap (higher is better).
+  - *Cost:* Number of blocks used to build the bridge (fewer is better).
+
+---
+level: medium
+category: support
+task: |
+  **Constraints:**
+  - Use no more than 3 sub-structures.
+
+  **Goal:**
+  - Build a bridge capable of spanning a gap between two flat terrains (10 units wide, 5 units high).
+  - The bridge must be able to support a 2.5 × 2.5 × 1.5 cargo placed at its center.
+
+  **Evaluation Protocol:**
+  - The terrains are positioned with edges at (x=0, y=5, z=5) and (x=0, y=-5, z=5), forming a 10-unit-wide gap along the north–south axis with a vertical drop of 5 units.
+  - The bridge will be initially placed at (x=0, y=0, z=7), slightly above the terrain tops, so it can gently fall into position.
+  - There will be no fixed connection between the bridge and the terrain.
+  - A cargo of size 2.5 × 2.5 × 1.5 will be dropped at (x=0, y=0, z=7), directly above the center of the gap.
+  - The cargo will rest on the bridge without any fixed connection.
+  - The cargo’s weight will gradually and linearly increase from zero (no initial impact).
+  - The trajectory of the cargo will be tracked; the load at which the cargo sinks below the gap will be recorded as the bridge’s maximum supported load.
+  - If the bridge fails to span the gap or misses the cargo at the start, the score is 0.
+
+  **Scoring Metrics:**
+  - *Maximum Load:* Maximum load supported before the cargo falls below the gap (higher is better).
+  - *Cost:* Number of blocks used to build the bridge (fewer is better).
+
+---
+level: hard
+category: support
+task: |
+  **Constraints:**
+  - Use no more than 3 sub-structures.
+
+  **Goal:**
+  - Build a bridge capable of spanning a gap between two flat terrains (20 units wide, 5 units high).
+  - The bridge must be able to support a 2.5 × 2.5 × 1.5 cargo placed at its center.
+
+  **Evaluation Protocol:**
+  - The terrains are positioned with edges at (x=0, y=10, z=5) and (x=0, y=-10, z=5), forming a 20-unit-wide gap along the north–south axis with a vertical drop of 5 units.
+  - The bridge will be initially placed at (x=0, y=0, z=7), slightly above the terrain tops, so it can gently fall into position.
+  - There will be no fixed connection between the bridge and the terrain.
+  - A cargo of size 2.5 × 2.5 × 1.5 will be dropped at (x=0, y=0, z=7), directly above the center of the gap.
+  - The cargo will rest on the bridge without any fixed connection.
+  - The cargo’s weight will gradually and linearly increase from zero (no initial impact).
+  - The trajectory of the cargo will be tracked; the load at which the cargo sinks below the gap will be recorded as the bridge’s maximum supported load.
+  - If the bridge fails to span the gap or misses the cargo at the start, the score is 0.
+
+  **Scoring Metrics:**
+  - *Maximum Load:* Maximum load supported before the cargo falls below the gap (higher is better).
+  - *Cost:* Number of blocks used to build the bridge (fewer is better).
+
+---
+level: soft
+category: lift
+task: |
+  **Constraints:**
+  - Use only one sub-structure.
+
+  **Goal:**
+  - Build a single rocket engine capable of providing propulsion to a single direction.
+
+  **Evaluation Protocol:**
+  - The rocket engine will be placed at position (x=0, y=0, z=0) on the ground plane.
+  - During the simulation, the firing control key of the rocket engine will be pressed and held continuously.
+  - The vertical propulsion force of the rocket engine will be calculated by the difference in vertical position of the rocket engine between the start and end of the simulation.
+
+  **Scoring Metrics:**
+  - *Maximum Propulsion Force:* The maximum propulsion force achieved by the rocket engine (higher is better).
+  - *Cost:* The total number of blocks used to construct the rocket engine (fewer is better).
+
+---
+level: medium
+category: lift
+task: |
+  **Constraints:**
+  - Use only one sub-structure.
+
+  **Goal:**
+  - Build a rocket capable of lifting off from the ground and ascending into the sky in the simulation environment.
+
+  **Evaluation Protocol:**
+  - The rocket will be placed at position (x=0, y=0, z=0) on the ground plane.
+  - During the simulation, the firing control key of the rocket engine will be pressed and held continuously.
+  - The motion trajectory of the rocket will be recorded throughout the simulation.
+
+  **Scoring Metrics:**
+  - *Maximum Height:* The highest vertical position (z) reached by any block of the rocket (higher is better).
+  - *Trajectory Deviation:* The average lateral distance between the rocket’s actual trajectory and the ideal vertical line (smaller is better).
+  - *Maximum Speed:* The highest speed achieved by any block of the rocket (higher is better).
+  - *Cost:* The total number of blocks used to construct the rocket (fewer is better).
+
+---
+level: hard
+category: lift
+task: |
+  **Constraints:**
+  - Use only two sub-structures.
+
+  **Goal:**
+  - Build a single rocket engine capable of providing propulsion to a single direction.
+  - Build a simple chassis to assemble the rocket engines using braces to form a symmetric rocket.
+  - The assembled rocket should be able to lift off from the ground to the sky in the simulation environment.
+
+  **Evaluation Protocol:**
+  - The assembled rocket will be placed at position (x=0, y=0, z=0) on the ground plane.
+  - During the simulation, the firing control key of the rocket engine will be pressed and held continuously.
+  - The motion trajectory of the assembled rocket will be recorded throughout the simulation.
+
+  **Scoring Metrics:**
+  - *Maximum Height:* The highest vertical position (z) reached by any block of the assembled rocket (higher is better).
+  - *Trajectory Deviation:* The average lateral distance between the assembled rocket’s actual trajectory and the ideal vertical line (smaller is better).
+  - *Maximum Speed:* The highest speed achieved by any block of the assembled rocket (higher is better).
+  - *Cost:* The total number of blocks used to construct the assembled rocket (fewer is better).

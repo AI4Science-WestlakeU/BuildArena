@@ -1,0 +1,28 @@
+[project]
+name = "BuildArena"
+version = "0.1.0"
+description = "BuildArena"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.52.0",
+    "autogen-agentchat>=0.7.4",
+    "autogen-core>=0.7.4",
+    "autogen-ext[anthropic,openai]>=0.7.4",
+    "flask>=3.1.1",
+    "jupyter>=1.1.1",
+    "keyboard>=0.13.5",
+    "matplotlib>=3.10.3",
+    "numpy-quaternion>=2024.0.8",
+    "openai>=1.82.0",
+    "pandas>=2.2.3",
+    "pillow>=11.2.1",
+    "pyautogui>=0.9.54",
+    "pynput>=1.8.1",
+    "python-fcl>=0.7.0.8",
+    "pyyaml>=6.0.2",
+    "scipy>=1.15.3",
+    "seaborn>=0.13.2",
+    "sqlmodel>=0.0.24",
+    "trimesh>=4.6.10",
+]

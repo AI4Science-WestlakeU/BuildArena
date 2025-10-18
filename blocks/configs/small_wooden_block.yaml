@@ -1,0 +1,47 @@
+name: Small Wooden Block
+id: 15
+shape: [1, 1, 1]
+root: [0, 0, 0.5]
+
+collider:
+  type: box
+  extents:
+    - [0.8, 0.8, 1]
+
+outline:
+  type: box
+  extents:
+    - [1, 1, 1]
+
+vec_base: [0, 0, 1]
+center_offset: 0.5
+
+
+faces:
+  A:
+    - [0.5, 0, 0.5]
+    - [1, 0, 0]
+  B:
+    - [-0.5, 0, 0.5]
+    - [-1, 0, 0]
+  C:
+    - [0, 0.5, 0.5]
+    - [0, 1, 0]
+  D:
+    - [0, -0.5, 0.5]
+    - [0, -1, 0]
+  E:
+    - [0, 0, 1]
+    - [0, 0, 1]
+  F:
+    - [0, 0, 0]
+    - [0, 0, -1]
+data: null
+locomotion: false
+spin: false
+type: basic
+weight: 0.3
+wiki: https://besiege.fandom.com/wiki/Small_Wooden_Block
+description: Small wooden cubic block with shape of 1x1x1
+disable: false
+cost: 1

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=768, minimum-scale=0.1, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Build Arena: A Physics-Aligned Interactive Benchmark of LLMs for Engineering Construction">
+    <title>Build Arena: Towards Physics-Aligned Interactive Agentic Engineering Construction Automation</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Resource Priority: Load critical resources first -->
+    <!-- Highest Priority: Main carousel video -->
+    <link rel="preload" href="header_rocket.mp4" as="video" type="video/mp4">
+    
+    <!-- High Priority: Header images and carousel videos -->
+    <link rel="preload" href="benchmark_framework.png" as="image">
+    <link rel="preload" href="header_image.png" as="image">
+    <link rel="preload" href="header_arena.png" as="image">
+    <link rel="preload" href="header_vehicle.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="header_bridge.mp4" as="video" type="video/mp4">
+    
+    <!-- Medium Priority: Logos -->
+    <link rel="preload" href="westlake_logo.png" as="image">
+    <link rel="preload" href="lab_logo.png" as="image">
+    
+    <!-- Low Priority: GIFs will be lazy loaded via Intersection Observer -->
+</head>
+<body>
+    <!-- Header Container with Dual Overlay -->
+    <div class="header-container">
+        <!-- Header Image Wrapper with Title Overlay -->
+        <div style="position: relative; width: 100%;">
+            <!-- Carousel Container -->
+            <div class="carousel-container">
+                <video autoplay muted playsinline preload="auto" class="header-image carousel-image active" id="header-rocket-video">
+                    <source src="header_rocket.mp4" type="video/mp4">
+                </video>
+                <img src="header_image.png" alt="Build Arena Header" class="header-image carousel-image">
+                <video muted playsinline preload="metadata" class="header-image carousel-image" id="header-vehicle-video">
+                    <source src="header_vehicle.mp4" type="video/mp4">
+                </video>
+                <img src="header_arena.png" alt="Build Arena Header" class="header-image carousel-image">
+                <video muted playsinline preload="metadata" class="header-image carousel-image" id="header-bridge-video">
+                    <source src="header_bridge.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+            <!-- Carousel Navigation -->
+            <button class="carousel-btn carousel-btn-prev" onclick="changeSlide(-1)">‹</button>
+            <button class="carousel-btn carousel-btn-next" onclick="changeSlide(1)">›</button>
+            
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+                <span class="indicator" onclick="goToSlide(2)"></span>
+                <span class="indicator" onclick="goToSlide(3)"></span>
+                <span class="indicator" onclick="goToSlide(4)"></span>
+            </div>
+            
+            <!-- Title Block Overlay on Image -->
+            <div class="title-block">
+                <h1>Build Arena</h1>
+                <p class="subtitle">Towards Physics-Aligned Interactive <strong>Agentic Engineering Construction Automation</strong></p>
+            </div>
+        </div>
+
+        <!-- Bottom Authors Block - Right to Left Fade -->
+        <div class="authors-block">
+            <div class="authors-block-content">
+                <!-- Left: Authors and Affiliation -->
+                <div class="lab-left">
+                    <div class="author-names">
+                        Tian Xia, 
+                        Tianrun Gao, 
+                        Wenhao Deng, 
+                        Long Wei, 
+                        Xiaowei Qian, 
+                        Yixian Jiang, 
+                        Chenglei Yu, 
+                        Tailin Wu*
+                    </div>
+                    <div class="contact-info">*Corresponding author: <a href="mailto:wutailin@westlake.edu.cn">wutailin@westlake.edu.cn</a></div>
+                    <a href="https://www.westlake.edu.cn/" target="_blank" class="affiliation-link" style="text-decoration: none; color: inherit;">
+                        <div class="affiliation-item">
+                            <img src="westlake_logo.png" alt="Westlake University" class="westlake-logo">
+                            Westlake University
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Right: Lab Info and Links -->
+                <div class="authors-right">
+                    <a href="https://ai4s.lab.westlake.edu.cn/" target="_blank" class="lab-link" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="lab_logo.png" alt="Lab Logo" class="lab-logo">
+                        <div class="lab-name">AI for Scientific Simulation and Discovery Lab</div>
+                    </a>
+                    
+                    <div class="links">
+                        <a href="https://github.com/build-arena/build-arena.github.io" target="_blank">📄 Paper</a>
+                        <a href="https://github.com/AI4Science-WestlakeU/BuildArena" target="_blank">💻 Code</a>
+                        <a href="#benchmark">📈 Bench</a>
+                        <a href="https://store.steampowered.com/app/346010/" target="_blank">🎮 Besiege</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Content Wrapper (will be pushed down on hover) -->
+    <div class="page-content">
+        <!-- Main Content -->
+    <div class="container">
+        <!-- Abstract -->
+        <div class="abstract-box">
+
+            <p>
+                <strong>Engineering construction automation</strong> aims to transform natural language specifications into physically viable structures, 
+                requiring complex integrated reasoning under strict physical constraints. While modern LLMs possess broad knowledge and 
+                strong reasoning capabilities that make them promising candidates for this domain, their construction competencies remain 
+                largely unevaluated.
+            </p>
+
+            <p class="question">
+                Question: How can we comprehensively evaluate LLMs for language-driven and physics-grounded construction automation?
+            </p>
+
+            <!-- GIF Gallery -->
+            <div class="gif-gallery">
+                <div class="gif-item">
+                    <img data-src="assets/construction_brige.gif" alt="Bridge Construction" class="lazy-gif" loading="lazy">
+                    <h3>Bridge Construction</h3>
+                </div>
+                <div class="gif-item">
+                    <img data-src="assets/construction_vehicle.gif" alt="Vehicle Construction" class="lazy-gif" loading="lazy">
+                    <h3>Vehicle Construction</h3>
+                </div>
+                <div class="gif-item">
+                    <img data-src="assets/construction_racket.gif" alt="Rocket Construction" class="lazy-gif" loading="lazy">
+                    <h3>Rocket Construction</h3>
+                </div>
+            </div>
+
+            <p class="answer">
+                Here, we introduce <strong style="color: var(--accent-color);">Build Arena</strong>, the first physics-aligned interactive 
+                benchmark designed for language-driven engineering construction.
+            </p>
+
+            <!-- Agentic Engineering Construction Automation Arena -->
+            <div class="arena-section">
+                <h2 class="arena-title">Agentic Engineering Construction Automation Arena</h2>
+
+                <!-- Grok -->
+                <div class="arena-row">
+                    <div class="arena-model-logo">
+                        <img src="assets/construction_grid/model_logos/grok.svg" alt="Grok">
+                        <span class="model-name">Grok</span>
+                    </div>
+                    <img data-src="assets/construction_grid/grok/0.gif" alt="Grok Construction 0" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/grok/1.gif" alt="Grok Construction 1" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/grok/2.gif" alt="Grok Construction 2" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/grok/3.gif" alt="Grok Construction 3" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/grok/4.gif" alt="Grok Construction 4" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/grok/5.gif" alt="Grok Construction 5" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/grok/6.gif" alt="Grok Construction 6" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/grok/7.gif" alt="Grok Construction 7" class="lazy-gif" loading="lazy">
+                </div>
+
+                <!-- Claude -->
+                <div class="arena-row">
+                    <div class="arena-model-logo">
+                        <img src="assets/construction_grid/model_logos/claude-color.svg" alt="Claude">
+                        <span class="model-name">Claude</span>
+                    </div>
+                    <img data-src="assets/construction_grid/claude/0.gif" alt="Claude Construction 0" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/claude/1.gif" alt="Claude Construction 1" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/claude/2.gif" alt="Claude Construction 2" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/claude/3.gif" alt="Claude Construction 3" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/claude/4.gif" alt="Claude Construction 4" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/claude/5.gif" alt="Claude Construction 5" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/claude/6.gif" alt="Claude Construction 6" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/claude/7.gif" alt="Claude Construction 7" class="lazy-gif" loading="lazy">
+                </div>
+
+                <!-- Doubao (Seed) -->
+                <div class="arena-row">
+                    <div class="arena-model-logo">
+                        <img src="assets/construction_grid/model_logos/doubao-color.svg" alt="Doubao">
+                        <span class="model-name">Doubao</span>
+                    </div>
+                    <img data-src="assets/construction_grid/doubao/0.gif" alt="Doubao Construction 0" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/doubao/1.gif" alt="Doubao Construction 1" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/doubao/2.gif" alt="Doubao Construction 2" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/doubao/3.gif" alt="Doubao Construction 3" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/doubao/4.gif" alt="Doubao Construction 4" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/doubao/5.gif" alt="Doubao Construction 5" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/doubao/6.gif" alt="Doubao Construction 6" class="lazy-gif" loading="lazy">
+                    <div class="arena-placeholder"></div>
+                </div>
+
+                <!-- GPT -->
+                <div class="arena-row">
+                    <div class="arena-model-logo">
+                        <img src="assets/construction_grid/model_logos/openai.svg" alt="GPT">
+                        <span class="model-name">GPT</span>
+                    </div>
+                    <img data-src="assets/construction_grid/gpt/0.gif" alt="GPT Construction 0" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gpt/1.gif" alt="GPT Construction 1" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gpt/2.gif" alt="GPT Construction 2" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gpt/3.gif" alt="GPT Construction 3" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gpt/4.gif" alt="GPT Construction 4" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gpt/5.gif" alt="GPT Construction 5" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gpt/6.gif" alt="GPT Construction 6" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gpt/7.gif" alt="GPT Construction 7" class="lazy-gif" loading="lazy">
+                </div>
+
+                <!-- Kimi -->
+                <div class="arena-row">
+                    <div class="arena-model-logo">
+                        <img src="assets/construction_grid/model_logos/kimi-color.svg" alt="Kimi">
+                        <span class="model-name">Kimi</span>
+                    </div>
+                    <img data-src="assets/construction_grid/kimi/0.gif" alt="Kimi Construction 0" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/kimi/1.gif" alt="Kimi Construction 1" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/kimi/2.gif" alt="Kimi Construction 2" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/kimi/3.gif" alt="Kimi Construction 3" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/kimi/4.gif" alt="Kimi Construction 4" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/kimi/5.gif" alt="Kimi Construction 5" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/kimi/6.gif" alt="Kimi Construction 6" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/kimi/7.gif" alt="Kimi Construction 7" class="lazy-gif" loading="lazy">
+                </div>
+
+                <!-- Qwen -->
+                <div class="arena-row">
+                    <div class="arena-model-logo">
+                        <img src="assets/construction_grid/model_logos/qwen-color.svg" alt="Qwen">
+                        <span class="model-name">Qwen</span>
+                    </div>
+                    <img data-src="assets/construction_grid/qwen/0.gif" alt="Qwen Construction 0" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/qwen/1.gif" alt="Qwen Construction 1" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/qwen/2.gif" alt="Qwen Construction 2" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/qwen/3.gif" alt="Qwen Construction 3" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/qwen/4.gif" alt="Qwen Construction 4" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/qwen/5.gif" alt="Qwen Construction 5" class="lazy-gif" loading="lazy">
+                    <div class="arena-placeholder"></div>
+                    <div class="arena-placeholder"></div>
+                </div>
+
+                <!-- DeepSeek -->
+                <div class="arena-row">
+                    <div class="arena-model-logo">
+                        <img src="assets/construction_grid/model_logos/deepseek-color.svg" alt="DeepSeek">
+                        <span class="model-name">DeepSeek</span>
+                    </div>
+                    <img data-src="assets/construction_grid/deepseek/0.gif" alt="DeepSeek Construction 0" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/deepseek/1.gif" alt="DeepSeek Construction 1" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/deepseek/2.gif" alt="DeepSeek Construction 2" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/deepseek/3.gif" alt="DeepSeek Construction 3" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/deepseek/4.gif" alt="DeepSeek Construction 4" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/deepseek/5.gif" alt="DeepSeek Construction 5" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/deepseek/6.gif" alt="DeepSeek Construction 6" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/deepseek/7.gif" alt="DeepSeek Construction 7" class="lazy-gif" loading="lazy">
+                </div>
+
+                <!-- Gemini -->
+                <div class="arena-row">
+                    <div class="arena-model-logo">
+                        <img src="assets/construction_grid/model_logos/gemini-color.svg" alt="Gemini">
+                        <span class="model-name">Gemini</span>
+                    </div>
+                    <img data-src="assets/construction_grid/gemini/0.gif" alt="Gemini Construction 0" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gemini/1.gif" alt="Gemini Construction 1" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gemini/2.gif" alt="Gemini Construction 2" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gemini/3.gif" alt="Gemini Construction 3" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gemini/4.gif" alt="Gemini Construction 4" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gemini/5.gif" alt="Gemini Construction 5" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gemini/6.gif" alt="Gemini Construction 6" class="lazy-gif" loading="lazy">
+                    <img data-src="assets/construction_grid/gemini/7.gif" alt="Gemini Construction 7" class="lazy-gif" loading="lazy">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Comparison Table -->
+        <section id="comparison">
+            <h3 class="comparison-subtitle">What Sets Build Arena Apart?</h3>
+            <p style="margin-top: 1rem;">
+                Build Arena is the first benchmark that comprehensively addresses spatial reasoning, 3D construction, construction-aimed 
+                planning, physical simulation, and interactive environments in a unified framework.
+            </p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Benchmark</th>
+                            <th>Spatial Reasoning</th>
+                            <th>3D Construction</th>
+                            <th>Construction Planning</th>
+                            <th>Physical Simulator</th>
+                            <th>Interactive Environment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PlanBench<sup>[1]</sup></td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                        </tr>
+                        <tr>
+                            <td>PlanQA<sup>[2]</sup></td>
+                            <td>✓</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                        </tr>
+                        <tr>
+                            <td>PHYRE<sup>[3]</sup></td>
+                            <td>✓</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>VOYAGER<sup>[4]</sup></td>
+                            <td>✓</td>
+                            <td>✗</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>Embodied Agent Interface<sup>[5]</sup></td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✗</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong>Build Arena (ours)</strong></td>
+                            <td><strong>✓</strong></td>
+                            <td><strong>✓</strong></td>
+                            <td><strong>✓</strong></td>
+                            <td><strong>✓</strong></td>
+                            <td><strong>✓</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Benchmark Framework -->
+        <section id="benchmark">
+            <h2>Benchmark Framework</h2>
+            <p>
+                Build Arena establishes a comprehensive evaluation framework with four core components:
+            </p>
+
+            <!-- Framework Diagram -->
+            <div class="framework-image-container">
+                <div class="framework-image-wrapper">
+                    <img src="benchmark_framework.png" alt="Build Arena Benchmark Framework" />
+                </div>
+            </div>
+
+            <h3>1. Language-Driven and Physics-Grounded Construction</h3>
+            <p>
+                We develop an open-source <strong>3D Spatial Geometric Computation Library</strong> that mirrors Besiege's construction 
+                logic and physical constraints. This library enables LLMs to interact with the construction space through natural language 
+                interfaces, ensuring consistency between language-based actions and physics-aligned outcomes.
+            </p>
+            <p>
+                Construction is inherently iterative: structures are assembled step by step, each component must connect to existing ones, 
+                and physical feasibility (e.g., collision avoidance) is continuously verified. Actions fall into four categories: 
+                <strong>Build</strong>, <strong>Refine</strong>, <strong>Query</strong>, and <strong>Control</strong>.
+            </p>
+
+            <h3>2. Agentic Workflow (Baseline & Customizable)</h3>
+            <p>
+                Inspired by human engineering practices, we design a baseline workflow that follows a coarse-to-fine structure with multi-party collaboration. 
+                It employs five specialized entities working together:
+            </p>
+            
+            <div class="workflow-grid-expandable">
+                <div class="workflow-card collapsed">
+                    <h4 onclick="toggleWorkflow(this)">
+                        <span class="workflow-toggle"></span>
+                        📋 Planner
+                    </h4>
+                    <div class="workflow-content">
+                        <p>
+                            The Planner takes the task description and available module set as input, and outputs a high-level 
+                            structured construction plan. It decomposes the overall goal into manageable phases and determines 
+                            the key components and their functional roles in the final structure.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="workflow-card collapsed">
+                    <h4 onclick="toggleWorkflow(this)">
+                        <span class="workflow-toggle"></span>
+                        ✏️ Drafter
+                    </h4>
+                    <div class="workflow-content">
+                        <p>
+                            The Drafter takes the construction plan and produces detailed design schematics. It specifies spatial 
+                            configurations, component arrangements, and structural details, translating abstract plans into 
+                            concrete blueprints ready for implementation.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="workflow-card collapsed">
+                    <h4 onclick="toggleWorkflow(this)">
+                        <span class="workflow-toggle"></span>
+                        🔍 Reviewer
+                    </h4>
+                    <div class="workflow-content">
+                        <p>
+                            The Reviewer examines and verifies the design schematics for feasibility, structural integrity, and 
+                            alignment with task requirements. It identifies potential issues and guides revisions, ensuring that 
+                            the design can be successfully realized in the physical simulator.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="workflow-card collapsed">
+                    <h4 onclick="toggleWorkflow(this)">
+                        <span class="workflow-toggle"></span>
+                        🔨 Builder
+                    </h4>
+                    <div class="workflow-content">
+                        <p>
+                            The Builder implements high-level construction suggestions into concrete API calls. It translates 
+                            design specifications into precise placement commands, manages spatial coordinates, and handles 
+                            physical constraints to construct the actual structure.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="workflow-card collapsed">
+                    <h4 onclick="toggleWorkflow(this)">
+                        <span class="workflow-toggle"></span>
+                        🧭 Guidance
+                    </h4>
+                    <div class="workflow-content">
+                        <p>
+                            The Guidance entity generates step-by-step execution suggestions based on current construction state. 
+                            It provides actionable recommendations for the next building steps, helping maintain construction 
+                            momentum and ensuring proper assembly sequence.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top: 1.5rem;">
+                The baseline workflow progresses through three stages: <strong>Plan Phase</strong> → <strong>Draft-Review Loop</strong> → 
+                <strong>Build-Guidance Loop</strong>, producing a simulation-compatible construction result. 
+                Our framework supports <strong>flexible workflow customization</strong>: you can define your own agent 
+                collaboration patterns, modify the multi-stage structure, or integrate alternative reasoning strategies to suit specific task requirements.
+            </p>
+
+            <h3>3. Simulation-Based Evaluation</h3>
+            <p>
+                Construction results are evaluated in the Besiege physics simulator with task-specific protocols. For each task-LLM pair, 
+                we sample 64 times to ensure reliability. Evaluation metrics cover both <strong>performance</strong> (number of parts, 
+                success rate, task-specific indicators) and <strong>cost</strong> (input/output tokens, number of requests).
+            </p>
+
+            <h3>4. Task Suite (Base & Customizable)</h3>
+            <p>
+                Build Arena includes three representative engineering task categories, each with three difficulty levels (Easy, Medium, Hard). 
+                Tasks are designed along six difficulty dimensions: <strong>Quantification</strong>, <strong>Robustness</strong>, 
+                <strong>Magnitude</strong>, <strong>Compositionality</strong>, <strong>Precision</strong>, and <strong>Ambiguity</strong>. 
+                Click the <strong>⚙️ Yours</strong> card below to learn about customizing your own tasks.
+            </p>
+            
+            <div class="task-grid">
+                <div class="task-card collapsed">
+                    <h3 onclick="toggleTask(this)">
+                        <span class="task-toggle"></span>
+                        🚗 Transport
+                    </h3>
+                    <div class="task-content">
+                        <p>
+                            Construct mechanical structures capable of directional movement on a planar surface. Tests the ability to exploit 
+                            spatial movement afforded by building components. As difficulty increases, explicit instructions are removed and 
+                            cargo loads are added.
+                        </p>
+                    </div>
+                    <div class="task-footer">
+                        <span class="task-label">Dynamic Horizontal Movement</span>
+                        <p style="font-size: 0.85rem;"><strong>Metric:</strong> Maximum transport distance</p>
+                    </div>
+                </div>
+                
+                <div class="task-card collapsed">
+                    <h3 onclick="toggleTask(this)">
+                        <span class="task-toggle"></span>
+                        🌉 Support
+                    </h3>
+                    <div class="task-content">
+                        <p>
+                            Build static structures to support loads across gaps—essentially designing bridges. The span multiplies across 
+                            difficulty levels, requiring larger-scale structures and more precise assembly. Modular construction with multiple 
+                            substructures is required at higher levels.
+                        </p>
+                    </div>
+                    <div class="task-footer">
+                        <span class="task-label">Static Structural Stability</span>
+                        <p style="font-size: 0.85rem;"><strong>Metric:</strong> Maximum load weight</p>
+                    </div>
+                </div>
+                
+                <div class="task-card collapsed">
+                    <h3 onclick="toggleTask(this)">
+                        <span class="task-toggle"></span>
+                        🚀 Lift
+                    </h3>
+                    <div class="task-content">
+                        <p>
+                            Construct rockets capable of vertical movement. Lv.1 requires building a single rocket engine (TWR > 1). 
+                            Lv.2 requires an integrated rocket-powered aircraft. Lv.3 demands modular construction of separate substructures 
+                            (engine + frame) and their assembly.
+                        </p>
+                    </div>
+                    <div class="task-footer">
+                        <span class="task-label">Dynamic Vertical Movement</span>
+                        <p style="font-size: 0.85rem;"><strong>Metric:</strong> Thrust-to-weight ratio / Maximum height</p>
+                    </div>
+                </div>
+
+                <div class="task-card collapsed">
+                    <h3 onclick="toggleTask(this)">
+                        <span class="task-toggle"></span>
+                        ⚙️ Yours
+                    </h3>
+                    <div class="task-content">
+                        <p>
+                            Build Arena provides a flexible framework that allows you to define your own engineering construction tasks. 
+                            You can customize task descriptions, evaluation metrics, and physical constraints to suit 
+                            your specific research needs or application scenarios.
+                        </p>
+                    </div>
+                    <div class="task-footer">
+                        <span class="task-label" style="background: var(--main-color);">User-Defined Tasks</span>
+                        <p style="font-size: 0.85rem;"><strong>Metric:</strong> Custom evaluation criteria</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Performance Leaderboard Section -->
+        <section id="leaderboard">
+            <h2>Performance Leaderboard</h2>
+
+            <div class="table-container" style="max-width: 900px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="min-width: 200px;">Model (Full Name)</th>
+                            <th>Transport<br>Avg Success Rate</th>
+                            <th>Support<br>Avg Success Rate</th>
+                            <th>Lift<br>Avg Success Rate</th>
+                            <th>Overall<br>Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight-row">
+                            <td><strong>Grok-4</strong><br><span style="font-size: 0.8rem; color: var(--text-light);">grok4-0709</span></td>
+                            <td><strong>11.5%</strong></td>
+                            <td><strong>20.8%</strong></td>
+                            <td><strong>21.9%</strong></td>
+                            <td><span class="badge badge-excellent">🥇 Excellent</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Claude-4</strong><br><span style="font-size: 0.8rem; color: var(--text-light);">claude-sonnet-4-20250514</span></td>
+                            <td>12.5%</td>
+                            <td>3.1%</td>
+                            <td>4.2%</td>
+                            <td><span class="badge badge-good">🥈 Good</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Seed-1.6</strong><br><span style="font-size: 0.8rem; color: var(--text-light);">doubao-seed-1-6-250615</span></td>
+                            <td>6.2%</td>
+                            <td>19.3%</td>
+                            <td>2.1%</td>
+                            <td><span class="badge badge-good">🥉 Good</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>GPT-4o</strong><br><span style="font-size: 0.8rem; color: var(--text-light);">gpt-4o</span></td>
+                            <td>6.2%</td>
+                            <td>13.5%</td>
+                            <td>3.6%</td>
+                            <td><span class="badge badge-moderate">Moderate</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kimi-K2</strong><br><span style="font-size: 0.8rem; color: var(--text-light);">kimi-k2-turbo-preview</span></td>
+                            <td>4.7%</td>
+                            <td>11.5%</td>
+                            <td>5.2%</td>
+                            <td><span class="badge badge-moderate">Moderate</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Qwen-3</strong><br><span style="font-size: 0.8rem; color: var(--text-light);">qwen-plus (Qwen3 series)</span></td>
+                            <td>5.7%</td>
+                            <td>5.7%</td>
+                            <td>1.0%</td>
+                            <td><span class="badge badge-moderate">Moderate</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>DeepSeek-3.1</strong><br><span style="font-size: 0.8rem; color: var(--text-light);">deepseek-chat (DeepSeek-V3.1)</span></td>
+                            <td>2.6%</td>
+                            <td>8.3%</td>
+                            <td>3.6%</td>
+                            <td><span class="badge badge-moderate">Moderate</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gemini-2.0</strong><br><span style="font-size: 0.8rem; color: var(--text-light);">gemini-2.0-flash</span></td>
+                            <td>1.6%</td>
+                            <td>7.8%</td>
+                            <td>0.0%</td>
+                            <td><span class="badge badge-moderate">Moderate</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-light); font-style: italic;">
+                Success rates are averaged across all three difficulty levels (Lv.1, Lv.2, Lv.3) for each task category under our baseline agentic workflow. 
+                Full model snapshots and detailed experimental setup are available in the paper appendix.
+            </p>
+            <p>
+                We evaluate eight frontier large language models on Build Arena across three task categories (Transport, Support, Lift) 
+                and three difficulty levels (Lv.1 Easy, Lv.2 Medium, Lv.3 Hard) under our baseline agentic workflow. Performance is measured by success rate, with 64 samples 
+                per task-model pair to ensure statistical reliability.
+            </p>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results">
+            <h2>Key Findings</h2>
+            
+            <div class="findings-list">
+                <div class="finding-item">
+                    <div class="finding-number">1</div>
+                    <div class="finding-content">
+                        <h4>LLMs Can Perform Language-Driven 3D Construction</h4>
+                        <p>Eight frontier LLMs successfully completed construction tasks across multiple difficulty levels, demonstrating 
+                        that language models can translate natural language into physically viable 3D structures.</p>
+                    </div>
+                </div>
+
+                <div class="finding-item">
+                    <div class="finding-number">2</div>
+                    <div class="finding-content">
+                        <h4>Performance Varies Significantly Across Models</h4>
+                        <p>Grok-4 shows the strongest overall performance, particularly excelling in <strong>Precision</strong> and 
+                        <strong>Robustness</strong>. Most models handle <strong>Magnitude</strong> and <strong>Ambiguity</strong> well 
+                        but struggle with <strong>Compositionality</strong> and <strong>Precision</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="finding-item">
+                    <div class="finding-number">3</div>
+                    <div class="finding-content">
+                        <h4>LLMs Exhibit Creative Problem-Solving</h4>
+                        <p>When explicit constraints are relaxed, LLMs propose unconventional solutions such as propulsion-powered carriers 
+                        for transport tasks and wheel-integrated bridge structures that utilize automatic braking for stabilization.</p>
+                    </div>
+                </div>
+
+                <div class="finding-item">
+                    <div class="finding-number">4</div>
+                    <div class="finding-content">
+                        <h4>Real-World Engineering Knowledge Is Captured</h4>
+                        <p>LLMs construct structures mirroring real-world practices, such as steel trusses in bridges and differential 
+                        steering in vehicles, suggesting that structural concepts learned from text carry implicit spatial information.</p>
+                    </div>
+                </div>
+
+                <div class="finding-item">
+                    <div class="finding-number">5</div>
+                    <div class="finding-content">
+                        <h4>Significant Limitations Remain</h4>
+                        <p>Success rates drop sharply in hierarchical assembly tasks (Support Lv.3) and high-precision tasks (Lift). 
+                        Most models except Grok-4 fail completely at the hardest difficulty levels, indicating challenges with compositional 
+                        construction and precise spatial alignment.</p>
+                    </div>
+                </div>
+
+                <div class="finding-item">
+                    <div class="finding-number">6</div>
+                    <div class="finding-content">
+                        <h4>More Tokens ≠ Better Performance</h4>
+                        <p>Cost analysis reveals that massive inference does not guarantee high performance. Best construction results often 
+                        consume only moderate numbers of tokens, while many failed attempts incur massive token usage. Beyond a capability 
+                        threshold, additional inference cost does not translate into better results.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Conclusion
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <ul>
+                <li>LLMs can successfully perform language-driven 3D construction with physics constraints</li>
+                <li>Current models show promising capabilities in handling magnitude and ambiguity but struggle with precision and compositionality</li>
+                <li>There exists significant room for improvement, particularly in hierarchical assembly and high-precision tasks</li>
+            </ul>
+            <p>Our framework provides actionable insights for future LLM development in construction automation.</p>
+        </section> -->
+
+        <!-- Acknowledgments -->
+        <section id="acknowledgments" class="animate-on-scroll">
+            <h2>Acknowledgments</h2>
+            <p>
+                We are grateful to Spiderling Studios for creating Besiege, the inspiring physics sandbox that underpins our work. 
+                We also thank the developers of the open-source projects Lua Scripting Mod and Besiege Creation Import Addon for Blender 
+                for their valuable contributions to the community.
+            </p>
+            <p>
+                We also gratefully acknowledge the support of Westlake University Research Center for Industries of the Future.
+                The content is solely the responsibility of the authors and does not necessarily represent the official views of the
+                funding entities.
+            </p>
+        </section>
+
+        <!-- References -->
+        <section id="references" class="animate-on-scroll">
+            <h2>References</h2>
+            <div class="references-list">
+                <p class="reference-item">
+                    <span class="ref-number">[1]</span>
+                    Karthik Valmeekam, Matthew Marquez, Alberto Olmo, Sarath Sreedharan, and Subbarao Kambhampati. 
+                    <strong>PlanBench: An Extensible Benchmark for Evaluating Large Language Models on Planning and Reasoning about Change.</strong>
+                    In <em>Thirty-seventh Conference on Neural Information Processing Systems Datasets and Benchmarks Track</em>, 2023.
+                </p>
+                <p class="reference-item">
+                    <span class="ref-number">[2]</span>
+                    Fedor Rodionov, Abdelrahman Eldesokey, Michael Birsak, John Femiani, Bernard Ghanem, and Peter Wonka. 
+                    <strong>PlanQA: A Benchmark for Spatial Reasoning in LLMs using Structured Representations.</strong>
+                    <em>arXiv preprint arXiv:2507.07644</em>, 2025.
+                </p>
+                <p class="reference-item">
+                    <span class="ref-number">[3]</span>
+                    Anton Bakhtin, Laurens van der Maaten, Justin Johnson, Laura Gustafson, and Ross Girshick. 
+                    <strong>Phyre: A new benchmark for physical reasoning.</strong>
+                    <em>Advances in Neural Information Processing Systems</em>, 32, 2019.
+                </p>
+                <p class="reference-item">
+                    <span class="ref-number">[4]</span>
+                    Guanzhi Wang, Yuqi Xie, Yunfan Jiang, Ajay Mandlekar, Chaowei Xiao, Yuke Zhu, Linxi Fan, and Anima Anandkumar. 
+                    <strong>Voyager: An open-ended embodied agent with large language models.</strong>
+                    <em>arXiv preprint arXiv:2305.16291</em>, 2023.
+                </p>
+                <p class="reference-item">
+                    <span class="ref-number">[5]</span>
+                    Manling Li, Shiyu Zhao, Qineng Wang, Kangrui Wang, Yu Zhou, Sanjana Srivastava, Cem Gokmen, Tony Lee, Erran Li, Ruohan Zhang, et al. 
+                    <strong>Embodied agent interface: Benchmarking llms for embodied decision making.</strong>
+                    <em>Advances in Neural Information Processing Systems</em>, 37:100428–100534, 2024.
+                </p>
+            </div>
+        </section>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+        <p>&copy; 2025 AI for Scientific Simulation and Discovery Lab, Westlake University. All rights reserved.</p>
+        <p style="margin-top: 0.8rem;">
+            <a href="https://ai4s.lab.westlake.edu.cn/" target="_blank">🔬 Lab Website</a> | 
+            <a href="mailto:wutailin@westlake.edu.cn">✉️ Contact</a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">
+            For questions and collaborations, please reach out via email or GitHub Issues
+        </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,12 +1,37 @@
-# BuildArena
+<p align="center">
+  <img src="asset/project_logo.png" width="50%" />
+</p>
 
-Here we build the first physical-aligned interactive benchmark of LLMs for engineering construction: BuildArena
+<h1 align="center">Build Arena</h1>
+
+<p align="center">
+  <strong>The First Physics-Aligned Interactive Benchmark for Language-Driven Engineering Construction</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/build-arena/build-arena.github.io"><img src="https://img.shields.io/badge/📄-Paper-blue" alt="Paper"></a>
+  <a href="https://github.com/AI4Science-WestlakeU/BuildArena"><img src="https://img.shields.io/badge/💻-Code-green" alt="Code"></a>
+  <a href="https://build-arena.github.io/"><img src="https://img.shields.io/badge/🌐-Project%20Page-orange" alt="Project Page"></a>
+  <a href="https://store.steampowered.com/app/346010/"><img src="https://img.shields.io/badge/🎮-Besiege-purple" alt="Besiege"></a>
+</p>
 
 <p align="center">
   <img src="asset/car1.gif" width="30%" />
   <img src="asset/brg1.gif" width="30%" />
   <img src="asset/rkt1.gif" width="30%" />
 </p>
+
+---
+
+## 📅 Timeline
+
+- **2025-10-17** 🚀 Repository launched with baseline implementation
+- **Coming Soon** 📄 Preprint paper release
+- **Ongoing** 🔧 Active development and code updates
+
+> **Status:** We are actively developing and improving the codebase. Stay tuned for the preprint paper release and continuous updates!
+
+---
 
 ## Installation
 

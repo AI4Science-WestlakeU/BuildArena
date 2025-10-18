@@ -58,13 +58,15 @@ We evaluate eight frontier large language models on Build Arena across three tas
 
 > *Success rates are averaged across all three difficulty levels (Lv.1, Lv.2, Lv.3) for each task category under our baseline agentic workflow. Full model snapshots and detailed experimental setup are available in the paper appendix.*
 
-### Key Findings
+### Multi-Dimensional Performance Analysis
 
-- **Grok-4** shows the strongest overall performance, particularly excelling in **Precision** and **Robustness** across all task categories
-- Most models handle **Magnitude** and **Ambiguity** well but struggle with **Compositionality** and **Precision**
-- LLMs exhibit creative problem-solving by proposing unconventional solutions when constraints are relaxed
-- Success rates drop sharply in hierarchical assembly tasks (Support Lv.3) and high-precision tasks (Lift)
-- Cost analysis reveals that more tokens ≠ better performance — best results often consume only moderate numbers of tokens
+<p align="center">
+  <img src="radar_plot.jpg" width="70%" alt="Radar Plot: Performance of different LLMs against six dimensions of task difficulty" />
+</p>
+
+<p align="center">
+  <em>Figure: Performance of different LLMs against six dimensions of task difficulty: <strong>Quantification (Q)</strong>, <strong>Robustness (R)</strong>, <strong>Magnitude (M)</strong>, <strong>Compositionality (C)</strong>, <strong>Precision (P)</strong>, <strong>Ambiguity (A)</strong>.</em>
+</p>
 
 ---
 

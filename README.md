@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/build-arena/build-arena.github.io"><img src="https://img.shields.io/badge/📄-Paper-blue" alt="Paper"></a>
+  <a href="BuildArena.pdf"><img src="https://img.shields.io/badge/📄-Paper-blue" alt="Paper"></a>
   <a href="https://github.com/AI4Science-WestlakeU/BuildArena"><img src="https://img.shields.io/badge/💻-Code-green" alt="Code"></a>
   <a href="https://build-arena.github.io/"><img src="https://img.shields.io/badge/🌐-Project%20Page-orange" alt="Project Page"></a>
   <a href="https://store.steampowered.com/app/346010/"><img src="https://img.shields.io/badge/🎮-Besiege-purple" alt="Besiege"></a>
@@ -67,38 +67,6 @@ We evaluate eight frontier large language models on Build Arena across three tas
 <p align="center">
   <em>Figure: Performance of different LLMs against six dimensions of task difficulty: <strong>Quantification (Q)</strong>, <strong>Robustness (R)</strong>, <strong>Magnitude (M)</strong>, <strong>Compositionality (C)</strong>, <strong>Precision (P)</strong>, <strong>Ambiguity (A)</strong>.</em>
 </p>
-
-### Demo Videos: LLM Agent Engineering Results
-
-Below are demonstration videos showcasing the engineering outcomes from different LLM agents across three task categories:
-
-<table align="center">
-  <tr>
-    <td align="center" width="33%">
-      <h4>🚗 Transport Task</h4>
-      <video src="car.mp4" width="100%" controls>
-        Your browser does not support the video tag.
-      </video>
-      <p><em>Vehicle designed for transportation</em></p>
-    </td>
-    <td align="center" width="33%">
-      <h4>🌉 Support Task</h4>
-      <video src="brg.mp4" width="100%" controls>
-        Your browser does not support the video tag.
-      </video>
-      <p><em>Bridge structure for load support</em></p>
-    </td>
-    <td align="center" width="33%">
-      <h4>🚀 Lift Task</h4>
-      <video src="rocket.mp4" width="100%" controls>
-        Your browser does not support the video tag.
-      </video>
-      <p><em>Rocket mechanism for vertical lift</em></p>
-    </td>
-  </tr>
-</table>
-
-> **Note:** These videos demonstrate actual machines constructed by LLM agents and simulated in Besiege, showcasing the diverse engineering solutions across different task categories and difficulty levels.
 
 ---
 

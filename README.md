@@ -34,7 +34,7 @@ We also gratefully acknowledge the support of **Westlake University Research Cen
 ## 📅 Timeline
 
 - **2025-10-17** 🚀 Repository launched with baseline implementation
-- **Coming Soon** 📄 Preprint paper release
+- **Coming Soon** 📄 Preprint paper release soon! Currenly, you can find the paper in the [BuildArena.pdf](BuildArena.pdf) file.
 - **Ongoing** 🔧 Active development and code updates
 
 > **Status:** We are actively developing and improving the codebase. Stay tuned for the preprint paper release and continuous updates!

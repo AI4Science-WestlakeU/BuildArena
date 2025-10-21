@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="BuildArena.pdf"><img src="https://img.shields.io/badge/📄-Paper-blue" alt="Paper"></a>
+  <a href="https://arxiv.org/abs/2510.16559"><img src="https://img.shields.io/badge/📄-Paper-blue" alt="Paper"></a>
   <a href="https://github.com/AI4Science-WestlakeU/BuildArena"><img src="https://img.shields.io/badge/💻-Code-green" alt="Code"></a>
   <a href="https://build-arena.github.io/"><img src="https://img.shields.io/badge/🌐-Project%20Page-orange" alt="Project Page"></a>
   <a href="https://store.steampowered.com/app/346010/"><img src="https://img.shields.io/badge/🎮-Besiege-purple" alt="Besiege"></a>
@@ -34,10 +34,10 @@ We also gratefully acknowledge the support of **Westlake University Research Cen
 ## 📅 Timeline
 
 - **2025-10-17** 🚀 Repository launched with baseline implementation
-- **Coming Soon** 📄 Preprint paper release soon! Currenly, you can find the paper in the [BuildArena.pdf](BuildArena.pdf) file.
+- **2025-10-20** 📄 Preprint paper released on arXiv: [2510.16559](https://arxiv.org/abs/2510.16559)
 - **Ongoing** 🔧 Active development and code updates
 
-> **Status:** We are actively developing and improving the codebase. Stay tuned for the preprint paper release and continuous updates!
+> **Status:** We are actively developing and improving the codebase. Stay tuned for the continuous updates!
 
 ---
 
@@ -70,16 +70,24 @@ We evaluate eight frontier large language models on Build Arena across three tas
 
 ---
 
-## Installation
+## 📦 Installation
 
-Install [uv](https://github.com/astral-sh/uv) following the official guidance. 
+### Step 1: Install uv Package Manager
 
-Synchronize the virtual environment:
+Install [uv](https://github.com/astral-sh/uv) following the official guidance.
+
+### Step 2: Synchronize Virtual Environment
+
 ```bash
 uv sync
 ```
 
-Create a ``config.py`` file, copy and edit the content below:
+### Step 3: Configure API Keys and Paths
+
+Create a `config.py` file in the project root directory with the following content:
+
+> **💡 Tip:** For the UI position coordinates below, you can keep the default values for now. Later, when you need to run simulations, we provide a convenient `find_coords` tool to help you calibrate these positions for your specific screen setup (see [Step 6 in Simulation Process](#6-calibrate-ui-positions-optional)).
+
 ```python
 # Path of the directory where all the machines will be saved as BSG files
 # SavedMachines of the Besiege game (you can find it in the Steam) is recommended
@@ -97,6 +105,7 @@ API_KEY_ALI = "<Your Aliyun API key>"
 API_KEY_GOOGLE = "<Your Google API key>"
 
 # Automation clicking fractional position: (x: horizontal from left 0 to right 1, y: vertical: from top 0 to bottom 1)
+# You can keep these default values and calibrate them later using the find_coords tool
 # POS_OPEN_FOLDER: Open the folder to load the machine, a button on the left part of the top column
 POS_OPEN_FOLDER = (0.202, 0.035)
 # POS_ENTER_NAME: The machine name entering frame
@@ -117,84 +126,166 @@ POS_DELETE = (0.707, 0.038)
 POS_CONFIRM = (0.538, 0.586)
 ```
 
-## Usage
+> **Note:** Replace all placeholder values (paths and API keys) with your actual configuration.
 
-### 3D Spatial Computation Library
-[intro.ipynb](intro.ipynb) provides detailed introduction and demonstration of library's functions.
+---
 
-### Construction Process with Default Tasks:
-1. Construction process runs independently without the [Besiege](https://store.steampowered.com/app/346010/Besiege/).
+## 🚀 Usage
 
-2. Task details of different categories and levels can be found in [levels.yaml](levels.yaml).
+### 📚 3D Spatial Computation Library
 
-3. Run the [run_construction.py](script/run_construction.py) to start construction process, for example:
+The [intro.ipynb](intro.ipynb) notebook provides a detailed introduction and demonstration of the library's spatial computation functions.
+
+---
+
+### 🏗️ Construction Process with Default Tasks
+
+> **Note:** The construction process runs independently without requiring the Besiege game.
+
+**1. Task Configuration**
+
+Task details for different categories and levels can be found in [levels.yaml](levels.yaml).
+
+**2. Start Construction**
+
+Run the [run_construction.py](script/run_construction.py) script to start the construction process:
+
 ```bash
-uv run -m script.run_construction --model gpt-4o --category transport --level soft --n_sample 64 --n_worker 4
+uv run -m script.run_construction \
+  --model gpt-4o \
+  --category transport \
+  --level soft \
+  --n_sample 64 \
+  --n_worker 4
 ```
 
-4. You can monitor the process status in ``datacache/{category}_{level}_{model}_{timestamp}/task_database.db``.
+**3. Monitor Progress**
 
-5. The construction result ``BSG`` files can be imported into the Besiege game for viewing.
-
-### Simulation Process with Default Tasks:
-1. This repository DOES NOT contain the Besiege (a commercial software), which is required for simulation. The simulation scripts are only tested and verified on Windows.
-
-2. We suggest buying the game [Besiege](https://store.steampowered.com/app/346010/Besiege/) through [Steam](https://store.steampowered.com/) platform.
-
-3. Subscribe the [Lua Scripting Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2383785201&searchtext=Lua) through Steam Besiege Workshop. The Steam will automatically download the mod and update the game, restart the game if you opened it already.
-
-4. Right-click the game and choose to open local file folder, find the SavedMachine folder and put it's path to your ``config.py``, so the saved machine can be accessed in the game.
-
-5. Start the game, make sure the Lua Scripting Mod is activated.
-![](asset/mod.png)
-![](asset/luaon.png)
-
-6. Enter the last sandbox on the right, press ``ctrl+L`` to make sure Lua Scripting Mod panel can be shown and move it a little bit to ensure it does not block the start button.
-![](asset/sandbox.png)
-![](asset/lua.png)
-
-7. Change the position constants in the ``config.py``. We provide a tool for finding the fractional coordinates of the cursor:
-```bash
-# run the script
-uv run scripts/find_coords.py
+You can monitor the process status in the task database:
 ```
-Use `p` to print the coordinates and `q` to quit, and you can find the coordinates in the terminal output.
+datacache/{category}_{level}_{model}_{timestamp}/task_database.db
+```
 
-8. Press ``ctrl+L`` again to hide the Lua Scripting Mod panel, this is the starting status of the game for simulation.
-![](asset/start.png)
+**4. View Results**
 
-9. If you are about to run a Support category simulation, copy three Besiege level ``BLV`` files in the [asset/](asset) into ``CustomLevels`` directory of the game, and open the corresponding level in the Level Editor of the game.
+The construction result `BSG` files can be imported into the Besiege game for viewing.
 
-10. Run the [run_simulation](script/run_simulation.py) with a finished construction database:
+---
+
+### 🎮 Simulation Process with Default Tasks
+
+> **⚠️ Important:** This repository DOES NOT contain Besiege (a commercial software), which is **required** for simulation. The simulation scripts are only tested and verified on **Windows**.
+
+**1. Purchase and Install Besiege**
+
+Purchase the game [Besiege](https://store.steampowered.com/app/346010/Besiege/) through the [Steam](https://store.steampowered.com/) platform.
+
+**2. Install Lua Scripting Mod**
+
+Subscribe to the [Lua Scripting Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2383785201&searchtext=Lua) through Steam Besiege Workshop. Steam will automatically download and install the mod. Restart the game if it's already open.
+
+**3. Configure SavedMachines Path**
+
+Right-click the game in Steam and select "Manage → Browse local files". Locate the `SavedMachines` folder and add its path to your `config.py`, so the constructed machines can be accessed in the game.
+
+**4. Activate Lua Scripting Mod**
+
+Start the game and ensure the Lua Scripting Mod is activated:
+
+<p align="left">
+  <img src="asset/mod.png" width="45%" />
+  <img src="asset/luaon.png" width="45%" />
+</p>
+
+**5. Prepare Sandbox Environment**
+
+Enter the last sandbox on the right. Press `Ctrl+L` to show the Lua Scripting Mod panel, then move it slightly to ensure it doesn't block the start button:
+
+<p align="left">
+  <img src="asset/sandbox.png" width="45%" />
+  <img src="asset/lua.png" width="45%" />
+</p>
+
+**6. Calibrate UI Positions (Optional)**
+
+If needed, update the position constants in `config.py`. We provide a tool to find fractional coordinates:
+
+```bash
+uv run -m script.find_coords
+```
+
+- Press `p` to print coordinates
+- Press `q` to quit
+- Coordinates will be displayed in the terminal
+
+**7. Set Starting Configuration**
+
+Press `Ctrl+L` again to hide the Lua Scripting Mod panel. This is the proper starting state for simulation:
+
+<p align="center">
+  <img src="asset/start.png" width="60%" />
+</p>
+
+**8. Setup Custom Levels (For Support Category Only)**
+
+If running Support category simulations, copy the three Besiege level `BLV` files from [asset/](asset/) into the `CustomLevels` directory of the game. Then open the corresponding level in the Level Editor.
+
+**9. Run Simulation**
+
+Execute the [run_simulation.py](script/run_simulation.py) script with your construction database:
+
 ```bash
 uv run -m script.run_simulation --db path/to/simulation_database.db
 ```
 
-### Analysis
+---
 
-1. Construction process analysis script is provided as [sampling_path_analysis.py](analyze/sampling_path_analysis.py), which compute the cost data each construction sample in a finished database:
+### 📊 Analysis
+
+**Construction Analysis**
+
+Analyze construction costs for each sample using the [sampling_path_analysis.py](analyze/sampling_path_analysis.py) script:
+
 ```bash
 uv run -m analyze.sampling_path_analysis db_path path/to/task_database.db
 ```
-2. Simulation trajectory analysis scripts are provided in the [analyze/](analyze/), which determine if the machine passed the success criteria and compute the performance indicators:
+
+**Simulation Analysis**
+
+Analyze simulation trajectories to determine success criteria and compute performance indicators:
+
 ```bash
 uv run -m analyze.sim_common --csv_path path/to/simulation/trajectory.csv
 ```
 
-### Customization:
+Trajectory analysis scripts in [analyze/](analyze/) will evaluate whether machines pass success criteria and compute performance metrics.
 
-#### Customized LLM:
-We provide several model clients using Autogen in the [__init__.py](agents/__init__.py), you can add more following the same manner.
+---
 
-#### Customized Tasks:
-You can add new tasks by editing the [levels.yaml](levels.yaml), the new task must also have category and level attribute so the construction process script can work properly.
-#### Customized Simulation:
+### 🛠️ Customization
 
-1. Simulation preprocessing scripts for our default tasks and automation script [operations.py](simulation/operations.py) are provided in [simulation/](simulation).
+#### 🤖 Custom LLM Models
 
-2. You can create your own preprocess script following these examples, and modify the router function ``run_simulation`` in the [runner.py](scheduler/runner.py) to use it.
+We provide several model clients using Autogen in [agents/\_\_init\_\_.py](agents/__init__.py). You can add more models following the same pattern.
 
-3. If specialized game level is needed, you can create a Besiege Level ``BLV`` file using the Level Editor in the game.
+#### 📋 Custom Tasks
 
-#### Customized Analysis:
-You can create your own simulation data analysis script following examples in the [analyze/](analyze/) and modify the router function ``route_simulation_analysis`` in the [sim_common.py](analyze/sim_common.py) accordingly.
+Add new tasks by editing [levels.yaml](levels.yaml). Each task must have `category` and `level` attributes for the construction process to work properly.
+
+#### 🎯 Custom Simulation
+
+**1. Preprocessing Scripts**
+
+Simulation preprocessing scripts for default tasks and the automation script [operations.py](simulation/operations.py) are provided in [simulation/](simulation/).
+
+**2. Create Custom Scripts**
+
+You can create your own preprocessing script following these examples. Modify the router function `run_simulation` in [scheduler/runner.py](scheduler/runner.py) to use your custom script.
+
+**3. Custom Game Levels**
+
+If specialized game levels are needed, create Besiege Level `BLV` files using the Level Editor in the game.
+
+#### 📈 Custom Analysis
+
+Create custom simulation data analysis scripts following examples in [analyze/](analyze/). Modify the router function `route_simulation_analysis` in [analyze/sim_common.py](analyze/sim_common.py) accordingly.

@@ -261,20 +261,20 @@ class Block:
         if self.spin:
             spinning_forward = "".join(f"<String>{key}</String>" for key in set(self.locomotion['spinning_forward']))
             spinning_backward = "".join(f"<String>{key}</String>" for key in set(self.locomotion['spinning_backward']))
-            self.data = self.data.format(
+            data = self.data.format(
                 flipped = self.flipped, 
                 spinning_forward = spinning_forward, 
                 spinning_backward = spinning_backward)
-            for line in self.data.split('\n'):
+            for line in data.split('\n'):
                 lines.append(f'{indent}        {line}')
         elif self.shoot:
-            self.data = self.data.format(
+            data = self.data.format(
                 hold_to_fire = "".join(f"<String>{key}</String>" for key in set(self.locomotion['hold_to_fire']))
                 )
-            for line in self.data.split('\n'):
+            for line in data.split('\n'):
                 lines.append(f'{indent}        {line}')
         elif self.end_point:
-            self.data = self.data.format(
+            data = self.data.format(
                 end_x = self.projection.virtual[0], 
                 end_y = self.projection.virtual[1], 
                 end_z = self.projection.virtual[2],
@@ -285,7 +285,7 @@ class Block:
                 end_r_y = self.end_point.normal.euler.virtual[1],
                 end_r_z = self.end_point.normal.euler.virtual[2]
                 )
-            for line in self.data.split('\n'):
+            for line in data.split('\n'):
                 lines.append(f'{indent}        {line}')
         else:
             lines.append(f'{indent}        {self.data}')

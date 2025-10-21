@@ -20,6 +20,7 @@ dependencies = [
     "pyautogui>=0.9.54",
     "pynput>=1.8.1",
     "python-fcl>=0.7.0.8",
+    "pywin32>=311",
     "pyyaml>=6.0.2",
     "scipy>=1.15.3",
     "seaborn>=0.13.2",

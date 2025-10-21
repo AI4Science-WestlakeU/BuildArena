@@ -302,12 +302,5 @@ If you find this work useful, please cite our paper:
   author = {Xia, Tian and Gao, Tianrun and Deng, Wenhao and Wei, Long and Qian, Xiaowei and Jiang, Yixian and Yu, Chenglei and Wu, Tailin},
   journal = {arXiv preprint arXiv:2510.16559},
   year = {2025},
-  month = {October},
-  eprint = {2510.16559},
-  archivePrefix = {arXiv},
-  primaryClass = {cs.AI},
-  url = {https://arxiv.org/abs/2510.16559},
-  doi = {10.48550/arXiv.2510.16559},
-  note = {33 pages, 10 figures}
 }
 ```

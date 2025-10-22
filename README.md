@@ -9,10 +9,18 @@
 </p>
 
 <p align="center">
-  <a href="https://arxiv.org/abs/2510.16559"><img src="https://img.shields.io/badge/📄-Paper-blue" alt="Paper"></a>
-  <a href="https://github.com/AI4Science-WestlakeU/BuildArena"><img src="https://img.shields.io/badge/💻-Code-green" alt="Code"></a>
-  <a href="https://build-arena.github.io/"><img src="https://img.shields.io/badge/🌐-Project%20Page-orange" alt="Project Page"></a>
-  <a href="https://store.steampowered.com/app/346010/"><img src="https://img.shields.io/badge/🎮-Besiege-purple" alt="Besiege"></a>
+  <a href="https://arxiv.org/abs/2510.16559"><img src="https://img.shields.io/badge/📄-Paper-blue?style=for-the-badge" alt="Paper"></a>
+  <a href="https://github.com/AI4Science-WestlakeU/BuildArena"><img src="https://img.shields.io/badge/💻-Code-green?style=for-the-badge" alt="Code"></a>
+  <a href="https://build-arena.github.io/"><img src="https://img.shields.io/badge/🌐-Project%20Page-orange?style=for-the-badge" alt="Project Page"></a>
+  <a href="#-installation"><img src="https://img.shields.io/badge/🚀-Quick%20Start-red?style=for-the-badge" alt="Quick Start"></a>
+  <a href="https://store.steampowered.com/app/346010/"><img src="https://img.shields.io/badge/🎮-Besiege-purple?style=for-the-badge" alt="Besiege"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey?style=for-the-badge" alt="License: CC BY-NC 4.0"></a>
+</p>
+
+<p align="center">
+  <a href="https://ai4s.lab.westlake.edu.cn/">
+    <img src="asset/lab_logo.png" width="40%" alt="AI for Scientific Simulation and Discovery Lab" />
+  </a>
 </p>
 
 <p align="center">
@@ -61,7 +69,7 @@ We evaluate eight frontier large language models on Build Arena across three tas
 ### Multi-Dimensional Performance Analysis
 
 <p align="center">
-  <img src="radar_plot.jpg" width="70%" alt="Radar Plot: Performance of different LLMs against six dimensions of task difficulty" />
+  <img src="asset/radar_plot.jpg" width="70%" alt="Radar Plot: Performance of different LLMs against six dimensions of task difficulty" />
 </p>
 
 <p align="center">

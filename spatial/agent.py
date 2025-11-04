@@ -30,7 +30,7 @@ def init_agents(agent_config: dict):
     agent = AssistantAgent(
         name=agent_config['name'], 
         model_client=model_clients[agent_config['model']], 
-        system_message=agent_config['system_message'].replace("{available_blocks}", AvailableBlocks),
+        system_message=agent_config['system_message'].replace("{available_blks}", AvailableBlocks),
     )
     return agent
 

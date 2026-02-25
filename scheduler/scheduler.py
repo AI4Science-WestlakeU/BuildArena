@@ -176,8 +176,6 @@ class Scheduler:
                             len(self.active_processes) == 0 and 
                             pending_machines == 0)
                 if all_ended and all_satisfied:
-                    if self.mode == "sampling":
-                        self.post_process()
                     if break_on_complete:
                         print("All tasks completed.")
                         break

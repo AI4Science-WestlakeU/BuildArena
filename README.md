@@ -2,7 +2,7 @@
   <img src="asset/project_logo.png" width="50%" />
 </p>
 
-<h1 align="center">Build Arena</h1>
+<h1 align="center">Build Arena [ICML 2026]</h1>
 
 <p align="center">
   <strong>The First Physics-Aligned Interactive Benchmark for Language-Driven Engineering Construction</strong>
@@ -305,10 +305,12 @@ Create custom simulation data analysis scripts following examples in [analyze/](
 If you find this work useful, please cite our paper:
 
 ```bibtex
-@article{xia2025buildarena,
-  title = {BuildArena: A Physics-Aligned Interactive Benchmark of LLMs for Engineering Construction},
+@inproceedings{
+  xia2026buildarena,
+  title={BuildArena: A Physics\nobreakdash-Aligned Interactive Benchmark of {LLM}s for Engineering Construction},
   author = {Xia, Tian and Gao, Tianrun and Deng, Wenhao and Wei, Long and Qian, Xiaowei and Jiang, Yixian and Yu, Chenglei and Wu, Tailin},
-  journal = {arXiv preprint arXiv:2510.16559},
-  year = {2025},
+  booktitle={Forty-third International Conference on Machine Learning},
+  year={2026},
+  url={https://openreview.net/forum?id=QAQKmIp3SZ}
 }
 ```

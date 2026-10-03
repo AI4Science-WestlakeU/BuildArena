@@ -31,6 +31,8 @@
 
 ---
 
+For the **BuildArena 2.0 Challenge**, see [BuildArena-2.0](https://github.com/build-arena/BuildArena-2.0).
+
 ## 🙏 Special Thanks
 
 We are grateful to [Spiderling Studios](https://store.steampowered.com/app/346010/) for creating **Besiege**, the inspiring physics sandbox that underpins our work. We also thank the developers of the open-source projects [Lua Scripting Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2383785201) and [Besiege Creation Import Addon for Blender](https://github.com/lelandjansen/besiege-creation-importer) for their valuable contributions to the community.
